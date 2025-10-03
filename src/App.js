@@ -4,22 +4,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import AppRouter from './router';
 
-const Nav = styled.nav`
-  display: flex;
-  gap: 16px;
-  background: #222;
-  padding: 16px;
-`;
-
-const StyledLink = styled(Link)`
-  color: #61dafb;
-  text-decoration: none;
-  font-weight: bold;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
 const Footer = styled.footer`
   width: 100%;
   background: #222;
@@ -32,20 +16,30 @@ const Footer = styled.footer`
   z-index: 100;
 `;
 
+const Bg = styled.div`
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #a259ff, #6a82fb, #7f53ac, #4f2c8c);
+  background-size: 300% 300%;
+  animation: bgMove 7s ease-in-out infinite;
+  position: relative;
+  box-sizing: border-box;
+  padding-bottom: 80px;
+  @keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+`;
+
 function App() {
   return (
-    <div className="App" style={{ minHeight: '100vh', position: 'relative', paddingBottom: '80px', boxSizing: 'border-box' }}>
-      <Nav>
-        <StyledLink to="/">Home</StyledLink>
-        <StyledLink to="/about">About</StyledLink>
-      </Nav>
-      <main style={{ flex: 1 }}>
-        <AppRouter />
-      </main>
+    <Bg>
+      <AppRouter />
       <Footer>
         © 2025. 포트폴리오 사이트. All rights reserved.
       </Footer>
-    </div>
+    </Bg>
   );
 }
 

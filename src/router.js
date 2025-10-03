@@ -1,19 +1,13 @@
-import React from 'react';
+
+
 import { Routes, Route } from 'react-router-dom';
-
-function Home() {
-  return <h2>홈</h2>;
-}
-
-function About() {
-  return <h2>소개</h2>;
-}
+import ProfilePage from './pages/ProfilePage';
 
 export default function AppRouter() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
+      <Route path="/" element={<ProfilePage />} />
+      {/* <Route path="/about" element={<About />} /> */}
     </Routes>
   );
 }
