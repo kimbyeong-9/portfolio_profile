@@ -19,17 +19,10 @@ const Footer = styled.footer`
 const Bg = styled.div`
   min-height: 100vh;
   width: 100vw;
-  background: linear-gradient(135deg, #a259ff, #6a82fb, #7f53ac, #4f2c8c);
-  background-size: 300% 300%;
-  animation: bgMove 7s ease-in-out infinite;
+  background: #7b9acc;
   position: relative;
   box-sizing: border-box;
   padding-bottom: 80px;
-  @keyframes bgMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
 `;
 
 function App() {
