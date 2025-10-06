@@ -2,7 +2,53 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-// 움직이는 키보드 SVG 배경 데코레이션
+
+export default function ProfileCard() {
+  // 사슬 SVG는 고정, 정보는 순차 애니메이션
+  return (
+    <>
+  <ChainBg viewBox="0 0 1440 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <KeyboardSvg viewBox="0 0 340 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+        {/* 본체 */}
+        <rect x="10" y="20" width="320" height="70" rx="18" fill="#fff" fillOpacity="0.13" stroke="#b8bafd" strokeWidth="4"/>
+        {/* 키 */}
+        <rect x="30" y="38" width="36" height="18" rx="4" fill="#FFD916" fillOpacity="0.7"/>
+        <rect x="72" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
+        <rect x="114" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
+        <rect x="156" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
+        <rect x="198" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
+        <rect x="240" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
+        <rect x="282" y="38" width="28" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
+        {/* 아래 줄 키 */}
+        <rect x="30" y="62" width="60" height="18" rx="4" fill="#b388ff" fillOpacity="0.7"/>
+        <rect x="94" y="62" width="60" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
+        <rect x="158" y="62" width="60" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
+        <rect x="222" y="62" width="60" height="18" rx="4" fill="#61dafb" fillOpacity="0.7"/>
+      </KeyboardSvg>
+        {/* 네온 육각형 노드들 */}
+        {/* 완전히 깔끔한 배경만 남김 (육각형, 네온 노드 제거) */}
+      </ChainBg>
+      <Card>
+        <InfoRow>
+          <IntroWrap>
+            <FrontEndText>FRONT-END</FrontEndText>
+            <IntroText>
+              안 되는 이유보다 되는 방법을 찾는다
+              <br />
+              {/* 프론트엔드 개발자: 한 글자씩 연기처럼 왼쪽부터 */}
+              {['프','론','트','엔','드',' ','개','발','자'].map((char, i) => (
+                <SmokeText key={i} $delay={0.15 * i}>{char}</SmokeText>
+              ))}
+              <br />
+              <Name>김병호입니다</Name>
+            </IntroText>
+          </IntroWrap>
+        </InfoRow>
+      </Card>
+    </>
+  );
+}
+
 const KeyboardAnim = keyframes`
   0% { transform: translateX(-30px) rotate(-3deg); }
   50% { transform: translateX(30px) rotate(3deg); }
@@ -30,6 +76,18 @@ const KeyboardSvg = styled.svg`
   opacity: 0.22;
   z-index: 0;
   animation: ${KeyboardAnim} 6s ease-in-out infinite;
+
+  @media (max-width: 768px) {
+    width: 250px;
+    height: 80px;
+    bottom: 5vh;
+  }
+
+  @media (max-width: 480px) {
+    width: 180px;
+    height: 60px;
+    bottom: 3vh;
+  }
 `;
 
 const fadeInUp = keyframes`
@@ -87,14 +145,14 @@ const frontEndSmooth = keyframes`
 
 const Card = styled.section`
   width: 100vw;
-  min-height: 60vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
   border-radius: 0;
   box-shadow: none;
-  background: transparent;
+  background: #9E7A67;
   position: relative;
   z-index: 1;
 `;
@@ -106,31 +164,53 @@ const InfoRow = styled.div`
   justify-content: center;
   gap: 36px;
   width: 100vw;
-  height: 60vh;
+  height: 100vh;
   z-index: 2;
 `;
 
 
 const IntroWrap = styled.div`
   position: relative;
-  font-size: 3.2rem;
-  color: #FCF6F5;
-  font-weight: 700;
+  font-size: 6rem;
+  color: #F0E8D8;
+  font-weight: 900;
   text-align: center;
   letter-spacing: 0.01em;
   opacity: 1;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
   z-index: 2;
+  padding: 0 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 3.5rem;
+    gap: 0.3rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const IntroText = styled.span`
   display: inline-block;
   opacity: 0;
+  font-size: 5rem;
+  font-weight: 900;
+  font-family: 'Shinhwa', sans-serif;
+  color: #F0E8D8;
   animation: ${introZoom} 1.5s 0.1s cubic-bezier(0.7,0.2,0.2,1) forwards;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.2rem;
+  }
 `;
 
 const FrontEndText = styled.span`
@@ -140,14 +220,22 @@ const FrontEndText = styled.span`
   transform: translate(-50%, -60%);
   font-size: 5.5rem;
   font-weight: 900;
-  color: #fff;
+  color: #DDA94B;
   letter-spacing: 0.08em;
   opacity: 0;
   pointer-events: none;
   user-select: none;
-  text-shadow: 0 4px 32px #7b9acc99;
+  text-shadow: 0 4px 32px rgba(120, 80, 60, 0.6);
   animation: ${frontEndSmooth} 2.2s 0.1s cubic-bezier(0.77,0,0.175,1) forwards;
   z-index: 1;
+
+  @media (max-width: 768px) {
+    font-size: 3.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.5rem;
+  }
 `;
 
 // 한글 프론트엔드 개발자 연기 애니메이션
@@ -176,26 +264,45 @@ const smokeLeft = keyframes`
 
 const SmokeText = styled.span`
   display: inline-block;
-  font-size: 2.2rem;
+  font-size: 5rem;
   font-weight: 900;
-  color: #fff;
+  font-family: 'Shinhwa', sans-serif;
+  color: #F0E8D8;
   letter-spacing: 0.04em;
   opacity: 0;
-  text-shadow: 0 2px 16px #7b9acc99;
+  text-shadow: 0 2px 16px rgba(120, 80, 60, 0.6);
   animation: ${smokeLeft} 1.6s cubic-bezier(0.77,0,0.175,1) forwards;
-  animation-delay: ${props => props.delay || 0}s;
+  animation-delay: ${props => props.$delay || 0}s;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.2rem;
+  }
 `;
+
 const Name = styled.span`
   display: inline-block;
-  color: #FCF6F5;
+  color: #F0E8D8;
   font-weight: 900;
-  font-size: 2.8rem;
+  font-size: 5rem;
+  font-family: 'Shinhwa', sans-serif;
   margin-left: 0.5rem;
   opacity: 0;
   animation: ${fadeInUp} 0.7s 1.2s forwards;
   transform: translateY(-80px);
   animation-name: ${fadeInUp};
-  text-shadow: 0 2px 16px #4f5e7b99;
+  text-shadow: 0 2px 16px rgba(120, 80, 60, 0.6);
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.2rem;
+  }
 `;
 const Age = styled.div`
   font-size: 2rem;
@@ -224,49 +331,3 @@ const Email = styled.div`
   transform: translateY(120px);
   animation-name: ${fadeInUp};
 `;
-
-export default function ProfileCard() {
-  // 사슬 SVG는 고정, 정보는 순차 애니메이션
-  return (
-    <>
-  <ChainBg viewBox="0 0 1440 700" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <KeyboardSvg viewBox="0 0 340 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* 본체 */}
-        <rect x="10" y="20" width="320" height="70" rx="18" fill="#fff" fillOpacity="0.13" stroke="#b8bafd" strokeWidth="4"/>
-        {/* 키 */}
-        <rect x="30" y="38" width="36" height="18" rx="4" fill="#FFD916" fillOpacity="0.7"/>
-        <rect x="72" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="114" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="156" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="198" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="240" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="282" y="38" width="28" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        {/* 아래 줄 키 */}
-        <rect x="30" y="62" width="60" height="18" rx="4" fill="#b388ff" fillOpacity="0.7"/>
-        <rect x="94" y="62" width="60" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="158" y="62" width="60" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="222" y="62" width="60" height="18" rx="4" fill="#61dafb" fillOpacity="0.7"/>
-      </KeyboardSvg>
-        {/* 네온 육각형 노드들 */}
-        {/* 완전히 깔끔한 배경만 남김 (육각형, 네온 노드 제거) */}
-      </ChainBg>
-      <Card>
-        <InfoRow>
-          <IntroWrap>
-            <FrontEndText>FRONT-END</FrontEndText>
-            <IntroText>
-              안 되는 이유보다 되는 방법을 찾는다
-              <br />
-              {/* 프론트엔드 개발자: 한 글자씩 연기처럼 왼쪽부터 */}
-              {['프','론','트','엔','드',' ','개','발','자'].map((char, i) => (
-                <SmokeText key={i} delay={0.15 * i}>{char}</SmokeText>
-              ))}
-              <br />
-              <Name>김병호입니다</Name>
-            </IntroText>
-          </IntroWrap>
-        </InfoRow>
-      </Card>
-    </>
-  );
-}
