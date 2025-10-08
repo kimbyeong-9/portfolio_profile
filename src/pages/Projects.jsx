@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import ProjectCard from '../components/ProjectCard';
+import ProjectCard from '../components/ProjectCard.jsx';
 import { projectsData } from '../data/projectsData';
 
 

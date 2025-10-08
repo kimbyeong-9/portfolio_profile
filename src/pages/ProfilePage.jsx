@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import ProfileCard from './ProfileCard';
-import ProfileDetail from './ProfileDetail';
-import SkillStack from './SkillStack';
-import QnA from './Interview';
-import Projects from './Projects';
+import ProfileCard from './ProfileCard.jsx';
+import ProfileDetail from './ProfileDetail.jsx';
+import SkillStack from './SkillStack.jsx';
+import QnA from './Interview.jsx';
+import Projects from './Projects.jsx';
 
 const PageContainer = styled.div`
   position: relative;

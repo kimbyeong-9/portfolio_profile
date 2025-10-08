@@ -1,7 +1,7 @@
 
 
 import { Routes, Route } from 'react-router-dom';
-import ProfilePage from './pages/ProfilePage';
+import ProfilePage from './pages/ProfilePage.jsx';
 
 export default function AppRouter() {
   return (

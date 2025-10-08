@@ -3,14 +3,14 @@ import styled, { keyframes } from 'styled-components';
 import { qnaData } from '../data/qnaData';
 
 
-export default function QnA() {
+export default function Interview() {
   return (
     <Container>
-      <Title>Q&A</Title>
+      <Title>Interview</Title>
       <QnAList>
         {qnaData.map((item, index) => (
           <QnAItem key={index} $index={index}>
-            <Question>Q. {item.question}</Question>
+            <Question>{item.question}</Question>
             <Answer>{item.answer}</Answer>
           </QnAItem>
         ))}
@@ -33,15 +33,14 @@ const fadeIn = keyframes`
 
 const Container = styled.section`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background: #9E7A67;
-  padding: 2rem;
+  padding: 4rem 2rem;
   box-sizing: border-box;
-  overflow-y: auto;
   position: relative;
 `;
 

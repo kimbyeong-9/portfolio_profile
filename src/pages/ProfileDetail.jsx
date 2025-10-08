@@ -15,15 +15,15 @@ export default function ProfileDetail() {
           </InfoItem>
           <InfoItem>
             <span>생년월일</span>
-            <span>1999.01.01</span>
+            <span>1998.09.28</span>
           </InfoItem>
           <InfoItem>
             <span>전화번호</span>
-            <span>010-1234-5678</span>
+            <span>010-3345-4283</span>
           </InfoItem>
           <InfoItem>
             <span>이메일</span>
-            <span>byeong9@example.com</span>
+            <span>gkrjawnrkf1@gmail.com</span>
           </InfoItem>
         </InfoList>
       </LeftColumn>
@@ -128,7 +128,6 @@ const InfoList = styled.ul`
   margin: 0;
   width: 400px;
   max-width: 90vw;
-  background: rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 1.5rem;
 

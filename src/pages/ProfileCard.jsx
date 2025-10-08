@@ -33,14 +33,14 @@ export default function ProfileCard() {
           <IntroWrap>
             <FrontEndText>FRONT-END</FrontEndText>
             <IntroText>
-              안 되는 이유보다 되는 방법을 찾는다
+              <HighlightText>여행</HighlightText>대로 미래를 <HighlightText>탄탄</HighlightText>대로
               <br />
               {/* 프론트엔드 개발자: 한 글자씩 연기처럼 왼쪽부터 */}
               {['프','론','트','엔','드',' ','개','발','자'].map((char, i) => (
                 <SmokeText key={i} $delay={0.15 * i}>{char}</SmokeText>
               ))}
               <br />
-              <Name>김병호입니다</Name>
+              <Name>김병호<BasicText>입니다</BasicText></Name>
             </IntroText>
           </IntroWrap>
         </InfoRow>
@@ -264,7 +264,7 @@ const smokeLeft = keyframes`
 
 const SmokeText = styled.span`
   display: inline-block;
-  font-size: 5rem;
+  font-size: 3.5rem;
   font-weight: 900;
   font-family: 'Shinhwa', sans-serif;
   color: #F0E8D8;
@@ -275,17 +275,17 @@ const SmokeText = styled.span`
   animation-delay: ${props => props.$delay || 0}s;
 
   @media (max-width: 768px) {
-    font-size: 3rem;
+    font-size: 2.2rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 2.2rem;
+    font-size: 1.6rem;
   }
 `;
 
 const Name = styled.span`
   display: inline-block;
-  color: #F0E8D8;
+  color: #484740;
   font-weight: 900;
   font-size: 5rem;
   font-family: 'Shinhwa', sans-serif;
@@ -294,7 +294,6 @@ const Name = styled.span`
   animation: ${fadeInUp} 0.7s 1.2s forwards;
   transform: translateY(-80px);
   animation-name: ${fadeInUp};
-  text-shadow: 0 2px 16px rgba(120, 80, 60, 0.6);
 
   @media (max-width: 768px) {
     font-size: 3rem;
@@ -330,4 +329,18 @@ const Email = styled.div`
   animation: ${fadeInUp} 0.7s 1.7s forwards;
   transform: translateY(120px);
   animation-name: ${fadeInUp};
+`;
+
+const HighlightText = styled.span`
+  color: #484740;
+  font-weight: inherit;
+  font-size: inherit;
+  font-family: inherit;
+`;
+
+const BasicText = styled.span`
+  color: #F0E8D8;
+  font-weight: inherit;
+  font-size: inherit;
+  font-family: inherit;
 `;
