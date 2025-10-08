@@ -9,6 +9,6 @@ export const qnaData = [
   },
   {
     question: "Data Labs를 위해 어떤 자기계발을 해왔는지?",
-    answer: "저는 Data Labs ‘여행대로’의 실시간 여행 경험을 확장하기 위해 웹/모바일 전반의 실전 역량을 집중적으로 키워왔습니다. HTML/CSS/JavaScript로 반응형과 크로스브라우징을 표준화하고, React·React Router·Zustand 기반 SPA에 TypeScript를 적용해 안정성과 유지보수성을 높인 경현이 있으며, Next.js(SSR/SEO)로 초기 가시성과 유입을 강화했었습니다. WebSocket·WebRTC로 채팅/영상통화 프로토타입을 구현해보고, React Native로 모바일/WebApp까지 연결했으며, Supabase·Node.js로 인증·DB가 연동된 경량 백엔드도 구축해 보았습니다. Figma·Illustrator·Photoshop으로 UI/UX 프로토타입을 빠르게 시각화하고, Styled-Components·Tailwind·Chakra UI로 일관된 UI를 퍼블리싱했으며, MCP를 사용한 AI 기반 코딩으로 반복을 자동화해 구현–실험 주기를 단축해 보았습니다. 이번 저의 자기계발은 사람들과의 소통을 원활히 하고 고객의 니즈를 제품에 반영하기 위한 것으로, 입사 후 여행대로의 유입·전환·재방문 등 핵심 지표를 체계적으로 끌어올리겠습니다."
+    answer: "저는 Data Labs 여행대로의 실시간 여행 경험을 확장하기 위해 웹·모바일 전반의 개발 역량을 쌓아왔습니다. HTML/CSS/JavaScript로 반응형과 크로스브라우징을 구현하고, React·Zustand·TypeScript 기반의 SPA로 안정성과 유지보수성을 강화해 보았습니다. 또한 Next.js(SSR/SEO)로 유입 효율을 높인 경험이 있고, WebSocket·WebRTC를 활용해 채팅·영상통화 프로토타입을 개발했습니다. React Native로 WebApp까지 확장하고, Supabase·Node.js로 인증·DB가 연동된 경량 백엔드를 구축했으며, Figma와 Tailwind를 중심으로 UI/UX를 통일해본 경험이 있습니다. 마지막으로 MCP 기반 AI 코딩을 통해 반복 작업을 자동화하고 개발 효율을 높여봤습니다. 저의 자기계발은 사람들과의 소통을 원활히 하고 고객의 니즈를 제품에 반영하기 위함이였고 , 입사 후 ‘여행대로’의 유입·전환·재방문 지표 향상에 기여할 것입니다."
   }
 ];
