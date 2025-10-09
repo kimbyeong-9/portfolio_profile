@@ -104,21 +104,43 @@ const LeftColumn = styled.div`
 const ImagePlaceholder = styled.img`
   width: 400px;
   height: 450px;
-  border-radius: 0;
+  border-radius: 20px;
   object-fit: cover;
   object-position: center 10%;
-  background: #e0e0e0;
-  box-shadow: 0 4px 24px rgba(30, 65, 116, 0.3);
+  background: linear-gradient(135deg, #DDA94B 0%, #FFD916 100%);
   flex-shrink: 0;
+  position: relative;
+  border: 6px solid #2C1810;
+  box-shadow:
+    0 0 0 3px #DDA94B,
+    8px 8px 0px rgba(221, 169, 75, 0.6),
+    12px 12px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: rotate(-2deg);
+
+  &:hover {
+    transform: rotate(0deg) translateY(-8px) scale(1.02);
+    box-shadow:
+      0 0 0 3px #FFD916,
+      12px 12px 0px rgba(255, 217, 22, 0.8),
+      16px 16px 30px rgba(0, 0, 0, 0.4);
+    border-color: #DDA94B;
+  }
 
   @media (max-width: 768px) {
     width: 300px;
     height: 338px;
+    border-width: 5px;
+    box-shadow:
+      0 0 0 2px #DDA94B,
+      6px 6px 0px rgba(221, 169, 75, 0.6),
+      10px 10px 15px rgba(0, 0, 0, 0.3);
   }
 
   @media (max-width: 480px) {
     width: 250px;
     height: 280px;
+    border-width: 4px;
   }
 `;
 
@@ -184,15 +206,30 @@ const Section = styled.div`
 `;
 
 const SectionTitle = styled.h3`
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   font-weight: 900;
-  color: #DDA94B;
+  color: transparent;
   font-family: 'Shinhwa', sans-serif;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 8px rgba(120, 80, 60, 0.4);
+  margin-bottom: 1.8rem;
+  -webkit-text-stroke: 3px #2C1810;
+  text-stroke: 3px #2C1810;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  filter: drop-shadow(4px 4px 0px rgba(221, 169, 75, 0.4))
+          drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.2));
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.02);
+    filter: drop-shadow(6px 6px 0px rgba(221, 169, 75, 0.6))
+            drop-shadow(3px 3px 12px rgba(0, 0, 0, 0.3));
+  }
 
   @media (max-width: 768px) {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    -webkit-text-stroke: 2.5px #2C1810;
+    text-stroke: 2.5px #2C1810;
+    filter: drop-shadow(3px 3px 0px rgba(221, 169, 75, 0.4));
   }
 `;
 

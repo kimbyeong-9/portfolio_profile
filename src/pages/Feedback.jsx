@@ -203,8 +203,20 @@ const ButtonGroup = styled.div`
   margin-top: 2rem;
   padding-top: 2rem;
   border-top: 1px solid #e0e0e0;
+  justify-content: space-between;
+  align-items: center;
 
   @media (max-width: 480px) {
+    flex-direction: column;
+  }
+`;
+
+const LeftButtonGroup = styled.div`
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: 480px) {
+    width: 100%;
     flex-direction: column;
   }
 `;
@@ -547,17 +559,16 @@ export default function Feedback() {
             </Question>
 
             <ButtonGroup>
-              <SubmitButton type="submit">제출</SubmitButton>
-              <ClearButton type="button" onClick={handleClear}>
-                양식 지우기
-              </ClearButton>
-            </ButtonGroup>
-
-            <ExitButtonWrapper>
+              <LeftButtonGroup>
+                <SubmitButton type="submit">제출</SubmitButton>
+                <ClearButton type="button" onClick={handleClear}>
+                  양식 지우기
+                </ClearButton>
+              </LeftButtonGroup>
               <ExitButton type="button" onClick={() => navigate('/')}>
                 나가기
               </ExitButton>
-            </ExitButtonWrapper>
+            </ButtonGroup>
           </FormContent>
         </FormCard>
       </Container>

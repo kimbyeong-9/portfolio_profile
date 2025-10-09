@@ -54,23 +54,41 @@ const Container = styled.section`
 `;
 
 const Title = styled.h2`
-  font-size: 3.5rem;
+  font-size: 5rem;
   font-weight: 900;
-  color: #DDA94B;
+  color: transparent;
   font-family: 'Shinhwa', sans-serif;
-  margin-bottom: 3rem;
-  text-shadow: 0 2px 16px rgba(120, 80, 60, 0.6);
+  margin-bottom: 5rem;
+  -webkit-text-stroke: 4px #2C1810;
+  text-stroke: 4px #2C1810;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   opacity: 0;
   animation: ${fadeIn} 0.8s 0.2s forwards;
+  filter: drop-shadow(5px 5px 0px rgba(221, 169, 75, 0.5))
+          drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.3));
+  transition: all 0.4s ease;
+
+  &:hover {
+    transform: translateY(-4px) scale(1.03);
+    filter: drop-shadow(7px 7px 0px rgba(221, 169, 75, 0.7))
+            drop-shadow(4px 4px 15px rgba(0, 0, 0, 0.4));
+  }
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+    font-size: 3.5rem;
+    margin-bottom: 3.5rem;
+    -webkit-text-stroke: 3px #2C1810;
+    text-stroke: 3px #2C1810;
+    filter: drop-shadow(4px 4px 0px rgba(221, 169, 75, 0.5));
   }
 
   @media (max-width: 480px) {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
+    -webkit-text-stroke: 2.5px #2C1810;
+    text-stroke: 2.5px #2C1810;
+    filter: drop-shadow(3px 3px 0px rgba(221, 169, 75, 0.4));
   }
 `;
 
