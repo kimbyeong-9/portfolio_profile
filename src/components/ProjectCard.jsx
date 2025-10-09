@@ -13,30 +13,72 @@ const fadeIn = keyframes`
 `;
 
 const Card = styled.div`
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
   opacity: 0;
   animation: ${fadeIn} 0.6s ${props => 0.3 + props.$index * 0.1}s forwards;
+  margin-bottom: 5rem;
 
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  &:nth-child(even) {
+    flex-direction: row-reverse;
   }
 
-  @media (max-width: 768px) {
-    &:hover {
-      transform: translateY(-4px);
-    }
+  @media (max-width: 968px) {
+    flex-direction: column !important;
+    gap: 2rem;
+    margin-bottom: 4rem;
   }
+`;
+
+// 노트북 전체 컨테이너
+const LaptopContainer = styled.div`
+  position: relative;
+  flex: 0 0 45%;
+  max-width: 500px;
+
+  @media (max-width: 968px) {
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+  }
+`;
+
+// 노트북 스크린 부분
+const LaptopScreen = styled.div`
+  background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
+  border-radius: 12px 12px 4px 4px;
+  padding: 12px;
+  box-shadow:
+    0 0 0 2px #0a0a0a,
+    0 8px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, rgba(100, 100, 100, 0.8) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+`;
+
+// 실제 화면 영역
+const ScreenContent = styled.div`
+  background: #f5f5f5;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
 `;
 
 const ImageWrapper = styled.div`
   width: 100%;
-  height: 250px;
+  height: 280px;
   background: #d0d0d0;
   overflow: hidden;
   position: relative;
@@ -47,116 +89,153 @@ const ImageWrapper = styled.div`
     object-fit: cover;
   }
 
-  @media (max-width: 768px) {
-    height: 200px;
+  @media (max-width: 968px) {
+    height: 220px;
   }
 `;
 
-const CardContent = styled.div`
-  padding: 1.8rem;
+// 노트북 베이스 (키보드 부분)
+const LaptopBase = styled.div`
+  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+  border-radius: 0 0 8px 8px;
+  height: 16px;
+  position: relative;
+  box-shadow:
+    0 2px 0 #0a0a0a,
+    0 8px 20px rgba(0, 0, 0, 0.3);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent 0%, #1a1a1a 50%, transparent 100%);
+    border-radius: 2px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 5%;
+    right: 5%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+    filter: blur(3px);
+  }
+`;
+
+// 오른쪽 정보 영역
+const InfoSection = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-`;
+  gap: 2rem;
 
-const ProjectName = styled.h3`
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #FFD916;
-  font-family: 'Shinhwa', sans-serif;
-  margin: 0;
-
-  @media (max-width: 768px) {
-    font-size: 1.4rem;
+  @media (max-width: 968px) {
+    width: 100%;
   }
 `;
 
-const ProjectDescription = styled.p`
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #F0E8D8;
-  margin: 0;
-  min-height: 48px;
-
-  @media (max-width: 768px) {
-    font-size: 0.95rem;
-  }
-`;
-
-const TagContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
-`;
-
-const Tag = styled.span`
-  background: rgba(221, 169, 75, 0.3);
-  color: #DDA94B;
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border: 1px solid rgba(221, 169, 75, 0.5);
-
-  @media (max-width: 768px) {
-    font-size: 0.8rem;
-    padding: 0.35rem 0.7rem;
-  }
-`;
-
-const curtainDown = keyframes`
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-`;
-
-const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translateY(-100%);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-  ${Card}:hover & {
-    animation: ${curtainDown} 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-`;
-
-const DetailButton = styled.button`
-  background: #DDA94B;
+const ProjectTitle = styled.h3`
+  font-size: 2rem;
+  font-weight: 900;
   color: #2C1810;
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  font-weight: 700;
   font-family: 'Shinhwa', sans-serif;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(221, 169, 75, 0.4);
+  margin: 0 0 0.5rem 0;
+
+  @media (max-width: 968px) {
+    font-size: 1.6rem;
+  }
+`;
+
+const ProjectPeriod = styled.p`
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0 0 1.5rem 0;
+  font-weight: 500;
+
+  @media (max-width: 968px) {
+    font-size: 1rem;
+  }
+`;
+
+const GithubLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #2C1810;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  transition: color 0.3s ease;
 
   &:hover {
-    background: #FFD916;
-    transform: scale(1.05);
-    box-shadow: 0 6px 16px rgba(255, 217, 22, 0.5);
+    color: #DDA94B;
   }
 
-  &:active {
-    transform: scale(0.98);
+  svg {
+    width: 24px;
+    height: 24px;
   }
 
-  @media (max-width: 768px) {
-    padding: 0.8rem 1.6rem;
+  @media (max-width: 968px) {
+    font-size: 1rem;
+  }
+`;
+
+const SectionTitle = styled.h4`
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2C1810;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #2C1810;
+
+  @media (max-width: 968px) {
+    font-size: 1.2rem;
+  }
+`;
+
+const WhatIDidList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+
+  li {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    padding-left: 1.2rem;
+    position: relative;
+
+    &::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #DDA94B;
+      font-weight: bold;
+    }
+  }
+
+  @media (max-width: 968px) {
+    li {
+      font-size: 0.95rem;
+    }
+  }
+`;
+
+const StackList = styled.div`
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.6;
+
+  @media (max-width: 968px) {
     font-size: 1rem;
   }
 `;
@@ -164,37 +243,76 @@ const DetailButton = styled.button`
 export default function ProjectCard({ project, index }) {
   return (
     <Card $index={index}>
-      <ImageWrapper>
-        {project.image ? (
-          <img src={project.image} alt={project.name} />
-        ) : (
-          <div style={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'linear-gradient(135deg, #9E7A67 0%, #7A5E52 100%)',
-            color: '#F0E8D8',
-            fontSize: '1.2rem',
-            fontWeight: '600'
-          }}>
-            이미지 준비 중
+      {/* 왼쪽: 노트북 이미지 */}
+      <LaptopContainer>
+        <LaptopScreen>
+          <ScreenContent>
+            <ImageWrapper>
+              {project.image ? (
+                <img src={project.image} alt={project.name} />
+              ) : (
+                <div style={{
+                  width: '100%',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%)',
+                  color: '#888',
+                  fontSize: '1.1rem',
+                  fontWeight: '600'
+                }}>
+                  이미지 준비 중
+                </div>
+              )}
+            </ImageWrapper>
+          </ScreenContent>
+        </LaptopScreen>
+        <LaptopBase />
+      </LaptopContainer>
+
+      {/* 오른쪽: 프로젝트 정보 */}
+      <InfoSection>
+        <div>
+          <ProjectTitle>{project.name}</ProjectTitle>
+          {project.period && <ProjectPeriod>{project.period}</ProjectPeriod>}
+          {project.github && (
+            <GithubLink href={project.github} target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              Github
+            </GithubLink>
+          )}
+        </div>
+
+        {project.teamProject && (
+          <div>
+            <SectionTitle>팀 프로젝트</SectionTitle>
+            <WhatIDidList>
+              <li>{project.teamProject}</li>
+            </WhatIDidList>
           </div>
         )}
-      </ImageWrapper>
-      <CardContent>
-        <ProjectName>{project.name}</ProjectName>
-        <ProjectDescription>{project.description}</ProjectDescription>
-        <TagContainer>
-          {project.tags.map((tag, tagIndex) => (
-            <Tag key={tagIndex}>{tag}</Tag>
-          ))}
-        </TagContainer>
-      </CardContent>
-      <Overlay>
-        <DetailButton>자세히 보기</DetailButton>
-      </Overlay>
+
+        {project.whatIDid && project.whatIDid.length > 0 && (
+          <div>
+            <SectionTitle>What I did</SectionTitle>
+            <WhatIDidList>
+              {project.whatIDid.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </WhatIDidList>
+          </div>
+        )}
+
+        {project.stack && (
+          <div>
+            <SectionTitle>Stack</SectionTitle>
+            <StackList>{project.stack}</StackList>
+          </div>
+        )}
+      </InfoSection>
     </Card>
   );
 }

@@ -64,15 +64,13 @@ const Title = styled.h2`
 `;
 
 const ProjectGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 3rem;
-  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 1200px;
   width: 100%;
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    max-width: 500px;
+  @media (max-width: 968px) {
+    max-width: 100%;
   }
 `;
