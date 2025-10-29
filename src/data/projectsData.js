@@ -29,13 +29,16 @@ export const projectsData = [
     deployUrl: "https://key-mint.vercel.app/",
     image: KeyMintAppImage,
     isTeamProject: false,
-    description: "키보드 커스터마이징 커뮤니티 플랫폼으로, 웹과 모바일 앱을 동시에 제공합니다. Next.js의 SSR을 통해 SEO를 최적화하고, React Native로 크로스 플랫폼 모바일 앱을 구현했습니다.",
+    description: "블록체인 기반 NFT 마켓플레이스입니다. 이더리움 Sepolia Testnet의 스마트 컨트랙트와 Toss Payments를 통합하여 NFT이미지 생성, 거래, 결제 시스템을 구현해 보았습니다. IPFS 분산 스토리지와 실시간 ETH/KRW 환율 변환을 지원하여 제작하였습니다.",
     whatIDid: [
-      "Next.js를 활용한 서버사이드 렌더링 구현",
-      "React Native로 모바일 앱 개발",
-      "Supabase를 활용한 실시간 데이터베이스 연동"
+      "Solidity로 ERC-721 표준 NFT 스마트 컨트랙트 개발 및 Sepolia Testnet 배포",
+      "Wagmi + RainbowKit을 활용한 지갑 연결 및 블록체인 트랜잭션 처리",
+      "IPFS(Web3.Storage)를 활용한 분산 스토리지 기반 NFT 메타데이터 관리",
+      "Toss Payments API 통합 및 QR 코드 기반 결제 시스템 구현",
+      "Supabase MCP로 38개 RPC 함수 및 18개 테이블 설계 및 구축",
+      "실시간 ETH/KRW 환율 변환 및 웹훅 기반 환불 시스템 구현"
     ],
-    stack: "Next.js, React Native, Supabase"
+    stack: "React, Vite, Styled-Components, Wagmi, RainbowKit, Solidity, Hardhat, OpenZeppelin, Supabase, PostgreSQL, IPFS(Web3.Storage), Toss Payments SDK, Ethereum Sepolia, NFT"
   },
   {
     id: 3,
@@ -78,12 +81,15 @@ export const projectsData = [
     deployUrl: "https://portfolio-profile-chi-opal.vercel.app/",
     image: PortfolioProfileImage,
     isTeamProject: false,
-    description: "개인 포트폴리오 웹사이트입니다. 인터랙티브한 애니메이션과 스크롤 효과를 활용하여 방문자에게 몰입감 있는 경험을 제공하며, 저의 프로젝트와 역량을 효과적으로 전달합니다.",
+    description: "Data Labs 지원을 위해 인터랙티브 포트폴리오 웹사이트를 제작했습니다. Scroll Snap과 Intersection Observer를 활용한 페이지 전환, 키보드 SVG 애니메이션, 실시간 피드백 시스템 등을 구현하여 방문자에게 몰입감 있는 사용자 경험을 제공해보았습니다.",
     whatIDid: [
-      "Tailwind CSS를 활용한 반응형 디자인 구현",
-      "WebRTC를 활용한 화상 통화 기능 개발",
-      "Firebase를 활용한 사용자 인증 시스템 구축"
+      "Styled-Components를 활용한 컴포넌트 기반 스타일링 시스템 구축",
+      "Intersection Observer API를 활용한 스크롤 기반 애니메이션 구현",
+      "Scroll Snap을 활용한 풀페이지 스크롤 네비게이션 구현",
+      "재사용 가능한 컴포넌트 구조 설계 (Feedback, Profile 등 8개 이상의 분리된 컴포넌트)",
+      "React Router를 활용한 SPA 라우팅 및 페이지 전환 구현",
+      "SVG 애니메이션과 Keyframes를 활용한 인터랙티브 UI 개발"
     ],
-    stack: "React, Tailwind CSS, WebRTC, Firebase"
+    stack: "React, Styled-Components, React Router DOM, Intersection Observer API, CSS, Scroll Snap"
   }
 ];

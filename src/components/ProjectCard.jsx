@@ -363,6 +363,7 @@ const StackList = styled.div`
   font-size: 1rem;
   color: #333;
   line-height: 1.5;
+  font-weight: 700;
 
   @media (max-width: 968px) {
     font-size: 0.95rem;
