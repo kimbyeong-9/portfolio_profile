@@ -142,15 +142,56 @@ const InfoSection = styled.div`
   }
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+`;
+
 const ProjectTitle = styled.h3`
   font-size: 1.8rem;
   font-weight: 900;
   color: #2C1810;
   font-family: 'Shinhwa', sans-serif;
-  margin: 0 0 0.3rem 0;
+  margin: 0;
 
   @media (max-width: 968px) {
     font-size: 1.5rem;
+  }
+`;
+
+const ProjectBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: 'Shinhwa', sans-serif;
+  background: ${props => props.$isTeam
+    ? 'linear-gradient(135deg, #FFD916 0%, #DDA94B 100%)'
+    : 'linear-gradient(135deg, #9E7A67 0%, #7A6152 100%)'};
+  color: ${props => props.$isTeam ? '#2C1810' : '#F0E8D8'};
+  box-shadow: 0 2px 8px ${props => props.$isTeam
+    ? 'rgba(221, 169, 75, 0.3)'
+    : 'rgba(0, 0, 0, 0.2)'};
+  border: 2px solid ${props => props.$isTeam ? '#DDA94B' : 'rgba(240, 232, 216, 0.3)'};
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (max-width: 968px) {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.8rem;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
   }
 `;
 
@@ -394,7 +435,28 @@ export default function ProjectCard({ project, index, showInTitle }) {
       {/* 오른쪽: 프로젝트 정보 */}
       <InfoSection>
         <div>
-          <ProjectTitle>{project.name}</ProjectTitle>
+          <TitleWrapper>
+            <ProjectTitle>{project.name}</ProjectTitle>
+            {project.isTeamProject ? (
+              <ProjectBadge $isTeam={true}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+                협업 {project.teamSize && `(${project.teamSize})`}
+              </ProjectBadge>
+            ) : (
+              <ProjectBadge $isTeam={false}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+                개인
+              </ProjectBadge>
+            )}
+          </TitleWrapper>
           {project.period && <ProjectPeriod>{project.period}</ProjectPeriod>}
         </div>
 
@@ -409,7 +471,7 @@ export default function ProjectCard({ project, index, showInTitle }) {
 
         {project.whatIDid && project.whatIDid.length > 0 && (
           <div>
-            <SectionTitle>What I did</SectionTitle>
+            <SectionTitle>주요 역할</SectionTitle>
             <WhatIDidList>
               {project.whatIDid.map((item, idx) => (
                 <li key={idx}>{item}</li>

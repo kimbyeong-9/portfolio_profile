@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { qnaData } from '../data/qnaData';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
@@ -29,18 +29,6 @@ export default function Interview() {
     </Container>
   );
 }
-
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
 
 const Container = styled.section`
   width: 100%;
@@ -109,8 +97,8 @@ const QnAList = styled.div`
 const QnAItem = styled.div`
   opacity: ${props => props.$isVisible ? 1 : 0};
   transform: translateY(${props => props.$isVisible ? 0 : '20px'});
-  transition: opacity 0.6s ease ${props => 0.4 + props.$index * 0.1}s,
-              transform 0.6s ease ${props => 0.4 + props.$index * 0.1}s;
+  transition: opacity 0.6s ease ${props => props.$index === 0 ? '0.4s' : props.$index === 1 ? '0.42s' : '0.44s'},
+              transform 0.6s ease ${props => props.$index === 0 ? '0.4s' : props.$index === 1 ? '0.42s' : '0.44s'};
 `;
 
 const Question = styled.h3`

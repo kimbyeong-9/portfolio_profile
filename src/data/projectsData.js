@@ -12,6 +12,7 @@ export const projectsData = [
     github: "https://github.com/kimbyeong-9/Travel_App.git",
     deployUrl: "https://travel-app-sable-three.vercel.app/",
     image: TrevelAppImage,
+    isTeamProject: false,
     teamProject: "데이터랩스의 여행대로를 바탕으로 개선점을 찾아 구현",
     whatIDid: [
       "React와 Supabase를 활용하여 풀스택 개발",
@@ -27,6 +28,7 @@ export const projectsData = [
     github: "https://github.com/kimbyeong-9/key-mint.git",
     deployUrl: "https://key-mint.vercel.app/",
     image: KeyMintAppImage,
+    isTeamProject: false,
     whatIDid: [
       "Next.js를 활용한 서버사이드 렌더링 구현",
       "React Native로 모바일 앱 개발",
@@ -41,6 +43,7 @@ export const projectsData = [
     github: "https://github.com/kimbyeong-9/video_call_app.git",
     deployUrl: "https://video-call-app-lime-omega.vercel.app/",
     image: VideoCallAppImage,
+    isTeamProject: false,
     whatIDid: [
       "WebSocket을 활용한 실시간 채팅 기능 구현",
       "Node.js 백엔드 서버 개발",
@@ -55,6 +58,8 @@ export const projectsData = [
     github: "https://github.com/BlueColor-Project/bluecolor-web2.git",
     deployUrl: "https://bluecolor-web2-nm7i.vercel.app/",
     image: BlueColorAppImage,
+    isTeamProject: true,
+    teamSize: "2명",
     whatIDid: [
       "TypeScript를 활용한 타입 안정성 확보",
       "Zustand를 활용한 전역 상태 관리",
@@ -69,6 +74,7 @@ export const projectsData = [
     github: "https://github.com/kimbyeong-9/portfolio_profile.git",
     deployUrl: "https://portfolio-profile-chi-opal.vercel.app/",
     image: PortfolioProfileImage,
+    isTeamProject: false,
     whatIDid: [
       "Tailwind CSS를 활용한 반응형 디자인 구현",
       "WebRTC를 활용한 화상 통화 기능 개발",
