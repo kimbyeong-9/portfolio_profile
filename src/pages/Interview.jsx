@@ -109,8 +109,8 @@ const QnAList = styled.div`
 const QnAItem = styled.div`
   opacity: ${props => props.$isVisible ? 1 : 0};
   transform: translateY(${props => props.$isVisible ? 0 : '20px'});
-  transition: opacity 0.6s ease ${props => 0.4 + props.$index * 0.2}s,
-              transform 0.6s ease ${props => 0.4 + props.$index * 0.2}s;
+  transition: opacity 0.6s ease ${props => 0.4 + props.$index * 0.1}s,
+              transform 0.6s ease ${props => 0.4 + props.$index * 0.1}s;
 `;
 
 const Question = styled.h3`

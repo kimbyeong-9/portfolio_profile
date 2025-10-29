@@ -2,8 +2,9 @@ export const projectsData = [
   {
     id: 1,
     name: "여행대로",
-    period: "2024.10 ~ 2024.11",
-    github: "https://github.com/yourusername/travel-project",
+    period: "2025.08 ~ 2025.09",
+    github: "https://github.com/kimbyeong-9/Travel_App.git",
+    deployUrl: "https://travel-app-sable-three.vercel.app/",
     image: null,
     teamProject: "데이터랩스의 여행대로를 바탕으로 개선점을 찾아 구현",
     whatIDid: [
@@ -15,9 +16,10 @@ export const projectsData = [
   },
   {
     id: 2,
-    name: "프로젝트 2",
-    period: "2024.08 ~ 2024.09",
-    github: "https://github.com/yourusername/project2",
+    name: "Key_Mint",
+    period: "2025.09 ~ 2025.10",
+    github: "https://github.com/kimbyeong-9/key-mint.git",
+    deployUrl: "https://key-mint.vercel.app/",
     image: null,
     whatIDid: [
       "Next.js를 활용한 서버사이드 렌더링 구현",
@@ -28,9 +30,10 @@ export const projectsData = [
   },
   {
     id: 3,
-    name: "프로젝트 3",
-    period: "2024.06 ~ 2024.07",
-    github: "https://github.com/yourusername/project3",
+    name: "Video_Call_App",
+    period: "2025.07 ~ 2025.08",
+    github: "https://github.com/kimbyeong-9/video_call_app.git",
+    deployUrl: "https://your-project3.vercel.app",
     image: null,
     whatIDid: [
       "WebSocket을 활용한 실시간 채팅 기능 구현",
@@ -41,9 +44,10 @@ export const projectsData = [
   },
   {
     id: 4,
-    name: "프로젝트 4",
-    period: "2024.04 ~ 2024.05",
-    github: "https://github.com/yourusername/project4",
+    name: "Bluecolor_Web",
+    period: "2025.04 ~ 2025.05",
+    github: "https://github.com/BlueColor-Project/bluecolor-web.git",
+    deployUrl: "https://your-project4.vercel.app",
     image: null,
     whatIDid: [
       "TypeScript를 활용한 타입 안정성 확보",
@@ -54,9 +58,10 @@ export const projectsData = [
   },
   {
     id: 5,
-    name: "프로젝트 5",
-    period: "2024.02 ~ 2024.03",
-    github: "https://github.com/yourusername/project5",
+    name: "Portfolio_Profile",
+    period: "2025.10 ~ 2025.11",
+    github: "https://github.com/kimbyeong-9/portfolio_profile.git",
+    deployUrl: "https://portfolio-profile-chi-opal.vercel.app/",
     image: null,
     whatIDid: [
       "Tailwind CSS를 활용한 반응형 디자인 구현",

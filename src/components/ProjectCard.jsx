@@ -45,6 +45,9 @@ const LaptopContainer = styled.div`
   position: relative;
   flex: 0 0 40%;
   max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 
   @media (max-width: 968px) {
     flex: 1;
@@ -181,7 +184,6 @@ const GithubLink = styled.a`
   text-decoration: none;
   font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 0.8rem;
   transition: color 0.3s ease;
 
   &:hover {
@@ -195,6 +197,55 @@ const GithubLink = styled.a`
 
   @media (max-width: 968px) {
     font-size: 0.95rem;
+  }
+`;
+
+const DeployLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #000;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
+  border: 2px solid #000;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    color: #000;
+    background: linear-gradient(135deg, #fafafa 0%, #e8e8e8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (max-width: 968px) {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
   }
 `;
 
@@ -250,6 +301,19 @@ const StackList = styled.div`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+
+  @media (max-width: 968px) {
+    justify-content: flex-start;
+  }
+`;
+
 export default function ProjectCard({ project, index, showInTitle }) {
   const [ref, isVisible] = useScrollAnimation(0.1);
 
@@ -257,37 +321,42 @@ export default function ProjectCard({ project, index, showInTitle }) {
     <Card ref={ref} $isVisible={isVisible} $index={index} $showInTitle={showInTitle}>
       {/* 왼쪽: 노트북 이미지 */}
       <LaptopContainer>
-        <LaptopScreen>
-          <ScreenContent>
-            <ImageWrapper>
-              {project.image ? (
-                <img src={project.image} alt={project.name} />
-              ) : (
-                <div style={{
-                  width: '100%',
-                  height: '100%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: 'linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%)',
-                  color: '#888',
-                  fontSize: '1.1rem',
-                  fontWeight: '600'
-                }}>
-                  이미지 준비 중
-                </div>
-              )}
-            </ImageWrapper>
-          </ScreenContent>
-        </LaptopScreen>
-        <LaptopBase />
-      </LaptopContainer>
-
-      {/* 오른쪽: 프로젝트 정보 */}
-      <InfoSection>
         <div>
-          <ProjectTitle>{project.name}</ProjectTitle>
-          {project.period && <ProjectPeriod>{project.period}</ProjectPeriod>}
+          <LaptopScreen>
+            <ScreenContent>
+              <ImageWrapper>
+                {project.image ? (
+                  <img src={project.image} alt={project.name} />
+                ) : (
+                  <div style={{
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'linear-gradient(135deg, #e0e0e0 0%, #c0c0c0 100%)',
+                    color: '#888',
+                    fontSize: '1.1rem',
+                    fontWeight: '600'
+                  }}>
+                    이미지 준비 중
+                  </div>
+                )}
+              </ImageWrapper>
+            </ScreenContent>
+          </LaptopScreen>
+          <LaptopBase />
+        </div>
+        <ButtonContainer>
+          {project.deployUrl && (
+            <DeployLink href={project.deployUrl} target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14"/>
+                <path d="M12 5l7 7-7 7"/>
+              </svg>
+              Visit Site
+            </DeployLink>
+          )}
           {project.github && (
             <GithubLink href={project.github} target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" fill="currentColor">
@@ -296,6 +365,14 @@ export default function ProjectCard({ project, index, showInTitle }) {
               Github
             </GithubLink>
           )}
+        </ButtonContainer>
+      </LaptopContainer>
+
+      {/* 오른쪽: 프로젝트 정보 */}
+      <InfoSection>
+        <div>
+          <ProjectTitle>{project.name}</ProjectTitle>
+          {project.period && <ProjectPeriod>{project.period}</ProjectPeriod>}
         </div>
 
         {project.teamProject && (

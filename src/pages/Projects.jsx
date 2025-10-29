@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import ProjectCard from '../components/ProjectCard.jsx';
 import { projectsData } from '../data/projectsData';
 import useScrollAnimation from '../hooks/useScrollAnimation';
@@ -22,18 +22,6 @@ export default function Projects() {
     </Container>
   );
 }
-
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
 
 const Container = styled.section`
   width: 100%;
@@ -87,17 +75,5 @@ const Title = styled.h2`
     -webkit-text-stroke: 2.5px #2C1810;
     text-stroke: 2.5px #2C1810;
     filter: drop-shadow(3px 3px 0px rgba(221, 169, 75, 0.4));
-  }
-`;
-
-const ProjectGrid = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  max-width: 1200px;
-  width: 100%;
-
-  @media (max-width: 968px) {
-    max-width: 100%;
   }
 `;
