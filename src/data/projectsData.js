@@ -47,7 +47,7 @@ export const projectsData = [
     name: "Bluecolor_Web",
     period: "2025.04 ~ 2025.05",
     github: "https://github.com/BlueColor-Project/bluecolor-web.git",
-    deployUrl: "https://your-project4.vercel.app",
+    deployUrl: "https://bluecolor-web2-nm7i.vercel.app/",
     image: null,
     whatIDid: [
       "TypeScript를 활용한 타입 안정성 확보",
