@@ -38,5 +38,31 @@ export const projectsData = [
       "RESTful API 설계 및 구현"
     ],
     stack: "JavaScript, WebSocket, Node.js"
+  },
+  {
+    id: 4,
+    name: "프로젝트 4",
+    period: "2024.04 ~ 2024.05",
+    github: "https://github.com/yourusername/project4",
+    image: null,
+    whatIDid: [
+      "TypeScript를 활용한 타입 안정성 확보",
+      "Zustand를 활용한 전역 상태 관리",
+      "Figma 디자인을 기반으로 UI/UX 구현"
+    ],
+    stack: "React, TypeScript, Zustand, Figma"
+  },
+  {
+    id: 5,
+    name: "프로젝트 5",
+    period: "2024.02 ~ 2024.03",
+    github: "https://github.com/yourusername/project5",
+    image: null,
+    whatIDid: [
+      "Tailwind CSS를 활용한 반응형 디자인 구현",
+      "WebRTC를 활용한 화상 통화 기능 개발",
+      "Firebase를 활용한 사용자 인증 시스템 구축"
+    ],
+    stack: "React, Tailwind CSS, WebRTC, Firebase"
   }
 ];

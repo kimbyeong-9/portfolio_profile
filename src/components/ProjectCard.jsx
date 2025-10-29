@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 
 const fadeIn = keyframes`
   from {
@@ -15,10 +16,18 @@ const fadeIn = keyframes`
 const Card = styled.div`
   display: flex;
   align-items: center;
-  gap: 3rem;
-  opacity: 0;
-  animation: ${fadeIn} 0.6s ${props => 0.3 + props.$index * 0.1}s forwards;
-  margin-bottom: 5rem;
+  justify-content: center;
+  gap: ${props => props.$showInTitle ? '2rem' : '3rem'};
+  opacity: ${props => props.$isVisible ? 1 : 0};
+  transform: translateY(${props => props.$isVisible ? 0 : '20px'});
+  transition: opacity 0.6s ease ${props => 0.3 + props.$index * 0.1}s,
+              transform 0.6s ease ${props => 0.3 + props.$index * 0.1}s;
+  width: 100%;
+  height: ${props => props.$showInTitle ? 'auto' : '100vh'};
+  padding: ${props => props.$showInTitle ? '0 2rem' : '8rem 2rem 4rem 2rem'};
+  box-sizing: border-box;
+  scroll-snap-align: ${props => props.$showInTitle ? 'none' : 'start'};
+  scroll-snap-stop: ${props => props.$showInTitle ? 'normal' : 'always'};
 
   &:nth-child(even) {
     flex-direction: row-reverse;
@@ -26,16 +35,16 @@ const Card = styled.div`
 
   @media (max-width: 968px) {
     flex-direction: column !important;
-    gap: 2rem;
-    margin-bottom: 4rem;
+    gap: ${props => props.$showInTitle ? '1.5rem' : '2rem'};
+    padding: ${props => props.$showInTitle ? '0 2rem' : '6rem 2rem 4rem 2rem'};
   }
 `;
 
 // 노트북 전체 컨테이너
 const LaptopContainer = styled.div`
   position: relative;
-  flex: 0 0 45%;
-  max-width: 500px;
+  flex: 0 0 40%;
+  max-width: 450px;
 
   @media (max-width: 968px) {
     flex: 1;
@@ -78,7 +87,7 @@ const ScreenContent = styled.div`
 
 const ImageWrapper = styled.div`
   width: 100%;
-  height: 280px;
+  height: 240px;
   background: #d0d0d0;
   overflow: hidden;
   position: relative;
@@ -90,7 +99,7 @@ const ImageWrapper = styled.div`
   }
 
   @media (max-width: 968px) {
-    height: 220px;
+    height: 200px;
   }
 `;
 
@@ -133,33 +142,34 @@ const InfoSection = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.2rem;
 
   @media (max-width: 968px) {
     width: 100%;
+    gap: 1.5rem;
   }
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 900;
   color: #2C1810;
   font-family: 'Shinhwa', sans-serif;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.3rem 0;
 
   @media (max-width: 968px) {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 `;
 
 const ProjectPeriod = styled.p`
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #666;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 0.8rem 0;
   font-weight: 500;
 
   @media (max-width: 968px) {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 `;
 
@@ -169,9 +179,9 @@ const GithubLink = styled.a`
   gap: 0.5rem;
   color: #2C1810;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 2rem;
+  margin-bottom: 0.8rem;
   transition: color 0.3s ease;
 
   &:hover {
@@ -179,38 +189,38 @@ const GithubLink = styled.a`
   }
 
   svg {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
   }
 
   @media (max-width: 968px) {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 `;
 
 const SectionTitle = styled.h4`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #2C1810;
-  margin: 0 0 1rem 0;
-  padding-bottom: 0.5rem;
+  margin: 0 0 0.6rem 0;
+  padding-bottom: 0.4rem;
   border-bottom: 2px solid #2C1810;
 
   @media (max-width: 968px) {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 `;
 
 const WhatIDidList = styled.ul`
   list-style: none;
   padding: 0;
-  margin: 0 0 2rem 0;
+  margin: 0;
 
   li {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #444;
-    line-height: 1.8;
-    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    margin-bottom: 0.4rem;
     padding-left: 1.2rem;
     position: relative;
 
@@ -225,24 +235,26 @@ const WhatIDidList = styled.ul`
 
   @media (max-width: 968px) {
     li {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
   }
 `;
 
 const StackList = styled.div`
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #333;
-  line-height: 1.6;
+  line-height: 1.5;
 
   @media (max-width: 968px) {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 `;
 
-export default function ProjectCard({ project, index }) {
+export default function ProjectCard({ project, index, showInTitle }) {
+  const [ref, isVisible] = useScrollAnimation(0.1);
+
   return (
-    <Card $index={index}>
+    <Card ref={ref} $isVisible={isVisible} $index={index} $showInTitle={showInTitle}>
       {/* 왼쪽: 노트북 이미지 */}
       <LaptopContainer>
         <LaptopScreen>

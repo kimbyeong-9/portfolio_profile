@@ -10,20 +10,20 @@ export default function ProfileCard() {
   <ChainBg viewBox="0 0 1440 700" fill="none" xmlns="http://www.w3.org/2000/svg">
       <KeyboardSvg viewBox="0 0 340 110" fill="none" xmlns="http://www.w3.org/2000/svg">
         {/* 본체 */}
-        <rect x="10" y="20" width="320" height="70" rx="18" fill="#fff" fillOpacity="0.13" stroke="#b8bafd" strokeWidth="4"/>
+        <rect x="10" y="20" width="320" height="70" rx="18" fill="#2C1810" fillOpacity="0.3" stroke="#DDA94B" strokeWidth="4"/>
         {/* 키 */}
-        <rect x="30" y="38" width="36" height="18" rx="4" fill="#FFD916" fillOpacity="0.7"/>
-        <rect x="72" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="114" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="156" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="198" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="240" y="38" width="36" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="282" y="38" width="28" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
+        <rect x="30" y="38" width="36" height="18" rx="4" fill="#FFD916" fillOpacity="0.8"/>
+        <rect x="72" y="38" width="36" height="18" rx="4" fill="#F0E8D8" fillOpacity="0.8"/>
+        <rect x="114" y="38" width="36" height="18" rx="4" fill="#F0E8D8" fillOpacity="0.8"/>
+        <rect x="156" y="38" width="36" height="18" rx="4" fill="#F0E8D8" fillOpacity="0.8"/>
+        <rect x="198" y="38" width="36" height="18" rx="4" fill="#F0E8D8" fillOpacity="0.8"/>
+        <rect x="240" y="38" width="36" height="18" rx="4" fill="#F0E8D8" fillOpacity="0.8"/>
+        <rect x="282" y="38" width="28" height="18" rx="4" fill="#F0E8D8" fillOpacity="0.8"/>
         {/* 아래 줄 키 */}
-        <rect x="30" y="62" width="60" height="18" rx="4" fill="#b388ff" fillOpacity="0.7"/>
-        <rect x="94" y="62" width="60" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="158" y="62" width="60" height="18" rx="4" fill="#fff" fillOpacity="0.7"/>
-        <rect x="222" y="62" width="60" height="18" rx="4" fill="#61dafb" fillOpacity="0.7"/>
+        <rect x="30" y="62" width="60" height="18" rx="4" fill="#DDA94B" fillOpacity="0.8"/>
+        <rect x="94" y="62" width="60" height="18" rx="4" fill="#F0E8D8" fillOpacity="0.8"/>
+        <rect x="158" y="62" width="60" height="18" rx="4" fill="#F0E8D8" fillOpacity="0.8"/>
+        <rect x="222" y="62" width="60" height="18" rx="4" fill="#C9A56A" fillOpacity="0.8"/>
       </KeyboardSvg>
         {/* 네온 육각형 노드들 */}
         {/* 완전히 깔끔한 배경만 남김 (육각형, 네온 노드 제거) */}
@@ -59,7 +59,7 @@ const ChainBg = styled.svg`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   z-index: 0;
   pointer-events: none;
@@ -144,7 +144,7 @@ const frontEndSmooth = keyframes`
 `;
 
 const Card = styled.section`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -152,7 +152,7 @@ const Card = styled.section`
   margin: 0;
   border-radius: 0;
   box-shadow: none;
-  background: #9E7A67;
+  background: transparent;
   position: relative;
   z-index: 1;
 `;
@@ -163,7 +163,7 @@ const InfoRow = styled.div`
   align-items: center;
   justify-content: center;
   gap: 36px;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   z-index: 2;
 `;

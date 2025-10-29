@@ -2,6 +2,16 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import profileImage from '../images/KakaoTalk_Photo_2025-10-06-20-23-20.png';
 import { careerData } from '../data/careerData';
+import useScrollAnimation from '../hooks/useScrollAnimation';
+
+function AnimatedSection({ delay, children }) {
+  const [ref, isVisible] = useScrollAnimation(0.1);
+  return (
+    <Section ref={ref} $isVisible={isVisible} $delay={delay}>
+      {children}
+    </Section>
+  );
+}
 
 export default function ProfileDetail() {
   return (
@@ -29,33 +39,35 @@ export default function ProfileDetail() {
       </LeftColumn>
 
       <RightColumn>
-        <Section $delay={0.2}>
+        <AnimatedSection delay={0.2}>
           <SectionTitle>Education</SectionTitle>
           <ContentBox>
             <ContentText>2017.03.02 ~ 2024.02.06 - 서정대학교 호텔조리학과</ContentText>
           </ContentBox>
-        </Section>
+        </AnimatedSection>
 
-        <Section $delay={0.4}>
-          <SectionTitle>Career</SectionTitle>
-          <ContentBox>
-            {careerData.map((career, index) => (
-              <CareerItem key={index}>
-                <CareerTitle>{career.company}</CareerTitle>
-                <CareerPeriod>{career.period}</CareerPeriod>
-                <CareerDesc>{career.position}</CareerDesc>
-                {career.description && <CareerDesc>{career.description}</CareerDesc>}
-              </CareerItem>
-            ))}
-          </ContentBox>
-        </Section>
+        <AnimatedSection delay={0.4}>
+          <div>
+            <SectionTitle>Career</SectionTitle>
+            <ContentBox>
+              {careerData.map((career, index) => (
+                <CareerItem key={index}>
+                  <CareerTitle>{career.company}</CareerTitle>
+                  <CareerPeriod>{career.period}</CareerPeriod>
+                  <CareerDesc>{career.position}</CareerDesc>
+                  {career.description && <CareerDesc>{career.description}</CareerDesc>}
+                </CareerItem>
+              ))}
+            </ContentBox>
+          </div>
 
-        <Section $delay={0.6}>
-          <SectionTitle>Certification</SectionTitle>
-          <ContentBox>
-            <ContentText>2016 - 한식조리기능사{'\n'}2021 - 운전면허 1종 보통</ContentText>
-          </ContentBox>
-        </Section>
+          <div style={{ marginTop: '3rem' }}>
+            <SectionTitle>Certification</SectionTitle>
+            <ContentBox>
+              <ContentText>2016 - 한식조리기능사{'\n'}2021 - 운전면허 1종 보통</ContentText>
+            </ContentBox>
+          </div>
+        </AnimatedSection>
       </RightColumn>
     </DetailSection>
   );
@@ -74,9 +86,10 @@ const fadeIn = keyframes`
 `;
 
 const DetailSection = styled.section`
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
-  background: #9E7A67;
+  height: 100vh;
+  background: transparent;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -85,6 +98,9 @@ const DetailSection = styled.section`
   position: relative;
   box-sizing: border-box;
   padding: 5rem 3rem 8rem 3rem;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow-y: auto;
 
   @media (max-width: 1024px) {
     flex-direction: column;
@@ -115,17 +131,7 @@ const ImagePlaceholder = styled.img`
     0 0 0 3px #DDA94B,
     8px 8px 0px rgba(221, 169, 75, 0.6),
     12px 12px 20px rgba(0, 0, 0, 0.3);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform: rotate(-2deg);
-
-  &:hover {
-    transform: rotate(0deg) translateY(-8px) scale(1.02);
-    box-shadow:
-      0 0 0 3px #FFD916,
-      12px 12px 0px rgba(255, 217, 22, 0.8),
-      16px 16px 30px rgba(0, 0, 0, 0.4);
-    border-color: #DDA94B;
-  }
 
   @media (max-width: 768px) {
     width: 300px;
@@ -201,8 +207,10 @@ const RightColumn = styled.div`
 `;
 
 const Section = styled.div`
-  opacity: 0;
-  animation: ${fadeIn} 0.6s ${props => props.$delay || 0}s forwards;
+  opacity: ${props => props.$isVisible ? 1 : 0};
+  transform: translateY(${props => props.$isVisible ? 0 : '20px'});
+  transition: opacity 0.6s ease ${props => props.$delay || 0}s,
+              transform 0.6s ease ${props => props.$delay || 0}s;
 `;
 
 const SectionTitle = styled.h3`
@@ -217,13 +225,6 @@ const SectionTitle = styled.h3`
   text-transform: uppercase;
   filter: drop-shadow(4px 4px 0px rgba(221, 169, 75, 0.4))
           drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.2));
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-3px) scale(1.02);
-    filter: drop-shadow(6px 6px 0px rgba(221, 169, 75, 0.6))
-            drop-shadow(3px 3px 12px rgba(0, 0, 0, 0.3));
-  }
 
   @media (max-width: 768px) {
     font-size: 2rem;
