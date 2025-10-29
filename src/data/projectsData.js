@@ -13,13 +13,16 @@ export const projectsData = [
     deployUrl: "https://travel-app-sable-three.vercel.app/",
     image: TrevelAppImage,
     isTeamProject: false,
-    description: "데이터랩스의 여행대로 앱을 직접 사용하며 느낀 개선점을 바탕으로 제작한 여행 플래너 웹 애플리케이션입니다. 사용자 중심의 UI/UX 개선에 초점을 맞춰 개발했습니다.",
+    description: "앱 전용이었던 서비스를 웹으로 확장하고 기존 앱의 오류를 개선하여 Data Labs 지원을 위해 제작해 보았습니다.",
     whatIDid: [
-      "React와 Supabase를 활용하여 풀스택 개발",
-      "프론트엔드 로그인, 커뮤니티, 찜목록 기능 개발",
-      "레이아웃 디자인, 커뮤니티 페이지 디자인 작업"
+      "React + TypeScript로 풀스택 개발 및 PostgreSQL 테이블 설계",
+      "Supabase Realtime 실시간 채팅 시스템 구현",
+      "Naver Search API 통합 및 CORS 문제 해결",
+      "Haversine 공식 기반 거리 계산 알고리즘 구현",
+      "Supabase Auth, Storage, RLS 기반 보안 시스템 구축",
+      "SPA 라우팅 및 반응형 디자인 구현"
     ],
-    stack: "React, Supabase, Styled-Components"
+    stack: "React, TypeScript, Vite, React Router DOM, Styled-Components, Supabase, Supabase Realtime, PostgreSQL, Naver Search API, ESLint"
   },
   {
     id: 2,
@@ -35,7 +38,7 @@ export const projectsData = [
       "Wagmi + RainbowKit을 활용한 지갑 연결 및 블록체인 트랜잭션 처리",
       "IPFS(Web3.Storage)를 활용한 분산 스토리지 기반 NFT 메타데이터 관리",
       "Toss Payments API 통합 및 QR 코드 기반 결제 시스템 구현",
-      "Supabase MCP로 38개 RPC 함수 및 18개 테이블 설계 및 구축",
+      "Supabase MCP로 38개 RPC 함수 및 테이블 설계 및 구축",
       "실시간 ETH/KRW 환율 변환 및 웹훅 기반 환불 시스템 구현"
     ],
     stack: "React, Vite, Styled-Components, Wagmi, RainbowKit, Solidity, Hardhat, OpenZeppelin, Supabase, PostgreSQL, IPFS(Web3.Storage), Toss Payments SDK, Ethereum Sepolia, NFT"
@@ -48,13 +51,16 @@ export const projectsData = [
     deployUrl: "https://video-call-app-lime-omega.vercel.app/",
     image: VideoCallAppImage,
     isTeamProject: false,
-    description: "WebRTC와 WebSocket을 활용한 실시간 화상 통화 및 채팅 애플리케이션입니다. 백엔드부터 프론트엔드까지 풀스택으로 개발하여 실시간 통신 기술을 학습했습니다.",
+    description: "WebRTC와 Supabase를 활용한 실시간 영상통화 및 채팅 플랫폼을 구현했습니다. 브라우저 기반 1:1 영상통화, Supabase Realtime을 활용한 실시간 채팅 및 시그널링 서버, WebRTC API 기반 미디어 스트리밍을 구현해 보았습니다.",
     whatIDid: [
-      "WebSocket을 활용한 실시간 채팅 기능 구현",
-      "Node.js 백엔드 서버 개발",
-      "RESTful API 설계 및 구현"
+      "WebRTC API를 활용한 P2P 영상통화 시스템 구현",
+      "Supabase Realtime을 시그널링 서버로 활용한 Offer/Answer/ICE Candidate 교환 구현",
+      "WebRTCManager 클래스 설계 및 PeerConnection 생명주기 관리",
+      "Supabase Realtime 기반 실시간 1:1 채팅 시스템 구현",
+      "PostgreSQL 테이블 설계 및 Row Level Security(RLS) 정책 구현",
+      "온라인 상태 관리 시스템 구축"
     ],
-    stack: "JavaScript, WebSocket, Node.js"
+    stack: "React, Vite, React Router DOM, Styled-Components, Supabase(PostgreSQL, Auth, Realtime, Storage, Presence), WebRTC API, MediaDevices API, STUN Server, Row Level Security(RLS), Context API, React Icons, ESLint"
   },
   {
     id: 4,
@@ -65,13 +71,16 @@ export const projectsData = [
     image: BlueColorAppImage,
     isTeamProject: true,
     teamSize: "2명",
-    description: "블루칼라 근로자를 위한 구인구직 플랫폼입니다. TypeScript로 타입 안정성을 확보하고, Figma 디자인을 기반으로 협업하여 완성도 높은 서비스를 개발했습니다.",
+    description: "PM 학습 인원과 협업하여 Figma 디자인 기반으로 개발한 블루칼라 전문 채용 플랫폼입니다. 사용자용 채용 정보 페이지와 관리자용 대시보드를 포함한 양방향 웹 애플리케이션으로, 기업 등록, 공고 관리, 이력서 업로드 시스템을 구현해 보았습니다.",
     whatIDid: [
-      "TypeScript를 활용한 타입 안정성 확보",
-      "Zustand를 활용한 전역 상태 관리",
-      "Figma 디자인을 기반으로 UI/UX 구현"
+      "React + React Router 7 기반 SPA 구조 설계 및 이중 라우팅 구현",
+      "Styled Components를 활용한 재사용 가능한 컴포넌트 설계",
+      "Figma 디자인 기반 UI 구현 (무한 슬라이드쇼, 가로 스크롤 네비게이션, 모달/드롭다운)",
+      "폼 입력 처리 및 검증 로직 구현",
+      "관리자 대시보드 개발 (기업 등록, 공고 관리, 이력서 업로드, 상태 관리 시스템)",
+      "Vite 빌드 최적화 및 Vercel 배포"
     ],
-    stack: "React, TypeScript, Zustand, Figma"
+    stack: "React, React Router DOM, Styled-Components, Vite, React Icons, ESLint, React Hooks(useState, useEffect, useRef, useNavigate), FileReader API, Vercel"
   },
   {
     id: 5,
