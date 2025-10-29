@@ -17,10 +17,7 @@ const Card = styled.div`
   box-sizing: border-box;
   scroll-snap-align: ${props => props.$showInTitle ? 'none' : 'start'};
   scroll-snap-stop: ${props => props.$showInTitle ? 'normal' : 'always'};
-
-  &:nth-child(even) {
-    flex-direction: row-reverse;
-  }
+  flex-direction: ${props => props.$index === 0 || props.$index % 2 === 0 ? 'row' : 'row-reverse'};
 
   @media (max-width: 968px) {
     flex-direction: column !important;
@@ -83,15 +80,91 @@ const ImageWrapper = styled.div`
   background: #d0d0d0;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s ease;
+    z-index: 1;
+  }
+
+  &:hover::before {
+    background: rgba(0, 0, 0, 0.4);
+  }
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
   }
 
   @media (max-width: 968px) {
     height: 200px;
+  }
+`;
+
+const HoverButton = styled.a`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #2C1810;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.9rem 1.8rem;
+  background: linear-gradient(135deg, #FFD916 0%, #DDA94B 100%);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(221, 169, 75, 0.4),
+              inset 0 -3px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Shinhwa', sans-serif;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  ${ImageWrapper}:hover & {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &:hover {
+    background: linear-gradient(135deg, #FFED4E 0%, #F4C542 100%);
+    box-shadow: 0 8px 25px rgba(221, 169, 75, 0.6),
+                inset 0 -3px 10px rgba(0, 0, 0, 0.15);
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover svg {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 968px) {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.4rem;
   }
 `;
 
@@ -230,88 +303,6 @@ const GithubLink = styled.a`
   }
 `;
 
-const DeployLink = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: #2C1810;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 700;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #FFD916 0%, #DDA94B 100%);
-  border: none;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(221, 169, 75, 0.3),
-              inset 0 -2px 8px rgba(0, 0, 0, 0.1);
-  font-family: 'Shinhwa', sans-serif;
-  letter-spacing: 0.02em;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, #FFED4E 0%, #F4C542 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 8px;
-    z-index: -1;
-  }
-
-  &:hover {
-    color: #2C1810;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(221, 169, 75, 0.5),
-                inset 0 -2px 8px rgba(0, 0, 0, 0.15);
-
-    &::before {
-      left: 100%;
-    }
-
-    &::after {
-      opacity: 1;
-    }
-  }
-
-  &:active {
-    transform: translateY(-1px);
-    box-shadow: 0 3px 10px rgba(221, 169, 75, 0.4),
-                inset 0 -2px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  svg {
-    width: 20px;
-    height: 20px;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover svg {
-    transform: translateX(4px);
-  }
-
-  @media (max-width: 968px) {
-    font-size: 0.95rem;
-    padding: 0.65rem 1.2rem;
-  }
-`;
-
 const SectionTitle = styled.h4`
   font-size: 1.2rem;
   font-weight: 700;
@@ -322,6 +313,20 @@ const SectionTitle = styled.h4`
 
   @media (max-width: 968px) {
     font-size: 1.1rem;
+  }
+`;
+
+const Description = styled.p`
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0.8rem 0;
+  font-weight: 500;
+
+  @media (max-width: 968px) {
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 `;
 
@@ -389,7 +394,19 @@ export default function ProjectCard({ project, index, showInTitle }) {
             <ScreenContent>
               <ImageWrapper>
                 {project.image ? (
-                  <img src={project.image} alt={project.name} />
+                  <>
+                    <img src={project.image} alt={project.name} />
+                    {project.deployUrl && (
+                      <HoverButton href={project.deployUrl} target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                          <polyline points="15 3 21 3 21 9"/>
+                          <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                        프로젝트 살펴보기
+                      </HoverButton>
+                    )}
+                  </>
                 ) : (
                   <div style={{
                     width: '100%',
@@ -411,16 +428,6 @@ export default function ProjectCard({ project, index, showInTitle }) {
           <LaptopBase />
         </div>
         <ButtonContainer>
-          {project.deployUrl && (
-            <DeployLink href={project.deployUrl} target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
-              </svg>
-              프로젝트 살펴보기
-            </DeployLink>
-          )}
           {project.github && (
             <GithubLink href={project.github} target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" fill="currentColor">
@@ -460,12 +467,10 @@ export default function ProjectCard({ project, index, showInTitle }) {
           {project.period && <ProjectPeriod>{project.period}</ProjectPeriod>}
         </div>
 
-        {project.teamProject && (
+        {project.description && (
           <div>
-            <SectionTitle>팀 프로젝트</SectionTitle>
-            <WhatIDidList>
-              <li>{project.teamProject}</li>
-            </WhatIDidList>
+            <SectionTitle>프로젝트 소개</SectionTitle>
+            <Description>{project.description}</Description>
           </div>
         )}
 
