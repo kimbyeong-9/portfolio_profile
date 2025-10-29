@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ProfileCard from './ProfileCard.jsx';
 import ProfileDetail from './ProfileDetail.jsx';
 import SkillStack from './SkillStack.jsx';
 import QnA from './Interview.jsx';
 import Projects from './Projects.jsx';
+import Closing from './Closing.jsx';
 
 const PageContainer = styled.div`
   position: relative;
@@ -138,25 +139,6 @@ const ScrollArrow = styled.div`
   }
 `;
 
-const FooterSection = styled.section`
-  width: 100%;
-  min-height: 30vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #9E7A67;
-  scroll-snap-align: end;
-`;
-
-const Footer = styled.footer`
-  width: 100%;
-  color: #F0E8D8;
-  text-align: center;
-  padding: 30px 20px;
-  font-size: 0.9rem;
-  line-height: 1.6;
-`;
-
 export default function ProfilePage() {
   return (
     <PageContainer>
@@ -190,12 +172,7 @@ export default function ProfilePage() {
         <SkillStack />
         <QnA />
         <Projects />
-        <FooterSection>
-          <Footer>
-            Copyright 2025. KimByeongho all rights reserved.<br />
-            React, Styled Components, Supabase 기반으로 제작된 사이트입니다.
-          </Footer>
-        </FooterSection>
+        <Closing />
       </ContentWrapper>
     </PageContainer>
   );

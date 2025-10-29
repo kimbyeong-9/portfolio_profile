@@ -1,17 +1,6 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import useScrollAnimation from '../hooks/useScrollAnimation';
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
 
 const Card = styled.div`
   display: flex;
@@ -203,18 +192,22 @@ const GithubLink = styled.a`
 const DeployLink = styled.a`
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  color: #000;
+  gap: 0.6rem;
+  color: #2C1810;
   text-decoration: none;
   font-size: 1rem;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  background: linear-gradient(135deg, #fff 0%, #f5f5f5 100%);
-  border: 2px solid #000;
-  border-radius: 6px;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #FFD916 0%, #DDA94B 100%);
+  border: none;
+  border-radius: 8px;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 15px rgba(221, 169, 75, 0.3),
+              inset 0 -2px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Shinhwa', sans-serif;
+  letter-spacing: 0.02em;
 
   &::before {
     content: '';
@@ -223,29 +216,58 @@ const DeployLink = styled.a`
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     transition: left 0.5s ease;
   }
 
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #FFED4E 0%, #F4C542 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 8px;
+    z-index: -1;
+  }
+
   &:hover {
-    color: #000;
-    background: linear-gradient(135deg, #fafafa 0%, #e8e8e8 100%);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: #2C1810;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(221, 169, 75, 0.5),
+                inset 0 -2px 8px rgba(0, 0, 0, 0.15);
 
     &::before {
       left: 100%;
     }
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(221, 169, 75, 0.4),
+                inset 0 -2px 8px rgba(0, 0, 0, 0.2);
   }
 
   svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover svg {
+    transform: translateX(4px);
   }
 
   @media (max-width: 968px) {
     font-size: 0.95rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.65rem 1.2rem;
   }
 `;
 
@@ -350,11 +372,12 @@ export default function ProjectCard({ project, index, showInTitle }) {
         <ButtonContainer>
           {project.deployUrl && (
             <DeployLink href={project.deployUrl} target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14"/>
-                <path d="M12 5l7 7-7 7"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
               </svg>
-              Visit Site
+              프로젝트 살펴보기
             </DeployLink>
           )}
           {project.github && (
