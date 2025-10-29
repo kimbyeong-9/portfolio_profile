@@ -33,7 +33,7 @@ export const projectsData = [
     name: "Video_Call_App",
     period: "2025.07 ~ 2025.08",
     github: "https://github.com/kimbyeong-9/video_call_app.git",
-    deployUrl: "https://your-project3.vercel.app",
+    deployUrl: "https://video-call-app-lime-omega.vercel.app/",
     image: null,
     whatIDid: [
       "WebSocket을 활용한 실시간 채팅 기능 구현",
