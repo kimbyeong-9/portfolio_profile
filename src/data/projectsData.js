@@ -65,7 +65,7 @@ export const projectsData = [
   {
     id: 4,
     name: "Bluecolor_Web",
-    period: "2025.04 ~ 2025.05",
+    period: "작업중",
     github: "https://github.com/BlueColor-Project/bluecolor-web2.git",
     deployUrl: "https://bluecolor-web2-nm7i.vercel.app/",
     image: BlueColorAppImage,
